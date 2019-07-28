@@ -1,12 +1,13 @@
-const express = require('express');
-const { check, validationResult } = require('express-validator');
-const storage = require('./../storage');
+import express, {Request, Response} from 'express';
+import Ship from "../ship";
+import { check, validationResult } from 'express-validator';
+import storage from './../storage';
 const router = express.Router();
 
 /**
  * Fetches list of Ships
  */
-router.get('/', function(req, res, next) {
+router.get('/', function(req: Request, res: Response) {
     res.set('Content-Type', 'application/json');
     res.status(200).json(storage);
 });
@@ -17,13 +18,13 @@ router.get('/', function(req, res, next) {
 router.post('/', [
     check('name').isLength({ min: 1 }),
     check('speed').isLength({ min: 1 }),
-], function (req, res) {
+], function (req: Request, res: Response) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() });
     }
 
-    const newShip = {
+    const newShip: Ship = {
         id: storage.length + 1,
         name: req.body.name,
         speed: req.body.speed,
@@ -34,4 +35,4 @@ router.post('/', [
     res.status(201).json(newShip);
 });
 
-module.exports = router;
+export default router;

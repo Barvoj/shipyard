@@ -19,7 +19,7 @@ Aditional notes:
 
 Start the server:
 ```bash
-docker run -it --rm -v $(pwd):/project -w /project -p 4242:4242 node:10-alpine yarn start
+docker run -it --rm -v $(pwd):/project -w /project -p 4242:4242 node:10-alpine sh -c "yarn run tsc; yarn start"
 ```
 
 View the website at: http://localhost:4242
