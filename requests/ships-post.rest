@@ -7,4 +7,14 @@ Content-Type: application/json
   "speed": "3.5"
 }
 
+> {%
+    client.test("Create new ship", function() {
+        client.assert(response.status === 201, "Status code should be 201 in ships-post.http scratch.");
+        client.assert(response.body.name === "Concordia", "Ship name should be 'Concordia' in ships-post.http scratch.");
+        client.assert(response.body.speed === "3.5", "Speed should be '3.5' in ships-post.http scratch.");
+        client.assert(typeof response.body.id === 'number', "Id should be number in ships-post.http scratch.");
+        client.assert(response.contentType.mimeType === "application/json", "Content-Type should be 'application/json' in ships-get.http scratch.");
+    });
+%}
+
 ###

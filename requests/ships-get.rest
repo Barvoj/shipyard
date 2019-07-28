@@ -1,4 +1,11 @@
 ### Get list of ships
 GET http://localhost:4242/v1/ships
 
+> {%
+    client.test("Get list of ships", function() {
+        client.assert(response.status === 200, "Status code should be 200 in ships-get.http scratch.");
+        client.assert(response.contentType.mimeType === "application/json", "Content-Type should be 'application/json' in ships-get.http scratch.");
+    });
+%}
+
 ###
