@@ -1,0 +1,10 @@
+### Create new ship
+POST http://localhost:4242/v1/ships
+Content-Type: application/json
+
+{
+  "name": "Concordia",
+  "speed": "3.5"
+}
+
+###

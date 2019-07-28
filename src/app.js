@@ -1,9 +1,10 @@
 const express = require('express');
 
+const shipsRouter = require('./routes/ships');
+
 const app = express();
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-});
+app.use(express.json());
+app.use('/v1/ships', shipsRouter);
 
 app.listen(4242);

@@ -1,0 +1,4 @@
+### Get list of ships
+GET http://localhost:4242/v1/ships
+
+###
