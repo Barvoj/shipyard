@@ -1,4 +1,5 @@
 const express = require('express');
+const { check, validationResult } = require('express-validator');
 const storage = require('./../storage');
 const router = express.Router();
 
@@ -13,7 +14,15 @@ router.get('/', function(req, res, next) {
 /**
  * Add ship to shipyard
  */
-router.post('/', function (req, res) {
+router.post('/', [
+    check('name').isLength({ min: 1 }),
+    check('speed').isLength({ min: 1 }),
+], function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
     const newShip = {
         id: storage.length + 1,
         name: req.body.name,

@@ -18,3 +18,19 @@ Content-Type: application/json
 %}
 
 ###
+
+### Create new ship
+POST http://localhost:4242/v1/ships
+Content-Type: application/json
+
+{
+  "name": "Concordia"
+}
+
+> {%
+    client.test("Create new ship without speed fails", function() {
+        client.assert(response.status === 422, "Status code should be 422 in ships-post.http scratch.");
+    });
+%}
+
+###
